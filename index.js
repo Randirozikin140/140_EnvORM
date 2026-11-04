@@ -67,3 +67,15 @@ app.delete("/komik/:id", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
+// --- 2. SINKRONISASI DATABASE & JALANKAN SERVER ---
+db.sequelize
+  .sync()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server berjalan di http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Gagal terhubung ke database:", err);
+  });
