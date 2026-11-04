@@ -23,3 +23,13 @@ app.post("/komik", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
+// READ (GET) - Lihat Semua Komik
+app.get("/komik", async (req, res) => {
+  try {
+    const komik = await db.Komik.findAll();
+    res.status(200).send(komik);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
